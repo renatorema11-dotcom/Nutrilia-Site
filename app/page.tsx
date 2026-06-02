@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Activity, Sparkles, Dna, Utensils, CheckCircle2 } from 'lucide-react';
 
 export default function HomePage() {
@@ -18,12 +19,16 @@ export default function HomePage() {
               Go beyond generic dieting. NutriAli uses clinical-grade data and intelligent algorithms to craft a wellness journey as unique as your fingerprints.
             </p>
             <div className="flex flex-wrap gap-4">
-              <button className="bg-primary text-on-primary px-6 py-3 rounded-full text-sm font-semibold hover:shadow-lg transition-all active:scale-95">
-                Start My Assessment
-              </button>
-              <button className="border border-outline-variant text-primary px-6 py-3 rounded-full text-sm font-semibold hover:bg-surface-container-low transition-all">
-                View Methodology
-              </button>
+              <Link href={process.env.NEXT_PUBLIC_NUTRIALI_APP_URL || '#'} target="_blank" rel="noopener noreferrer">
+                <button className="bg-primary text-on-primary px-6 py-3 rounded-full text-sm font-semibold hover:shadow-lg transition-all active:scale-95">
+                  Start My Assessment
+                </button>
+              </Link>
+              <Link href="/about">
+                <button className="border border-outline-variant text-primary px-6 py-3 rounded-full text-sm font-semibold hover:bg-surface-container-low transition-all">
+                  View Methodology
+                </button>
+              </Link>
             </div>
           </div>
           
@@ -135,12 +140,16 @@ export default function HomePage() {
               </p>
               
               <div className="flex flex-col md:flex-row justify-center items-center gap-4">
-                <button className="w-full md:w-auto bg-primary text-on-primary px-10 py-3 rounded-full text-sm font-semibold hover:bg-primary-container transition-all">
-                  Get Started Free
-                </button>
-                <button className="w-full md:w-auto border border-outline text-surface px-10 py-3 rounded-full text-sm font-semibold hover:bg-surface/10 transition-all">
-                  Talk to an Expert
-                </button>
+                <Link href={process.env.NEXT_PUBLIC_NUTRIALI_APP_URL || '#'} target="_blank" rel="noopener noreferrer" className="w-full md:w-auto">
+                  <button className="w-full bg-primary text-on-primary px-10 py-3 rounded-full text-sm font-semibold hover:bg-primary-container transition-all">
+                    Get Started Free
+                  </button>
+                </Link>
+                <Link href="/contact" className="w-full md:w-auto">
+                  <button className="w-full border border-outline text-surface px-10 py-3 rounded-full text-sm font-semibold hover:bg-surface/10 transition-all">
+                    Talk to an Expert
+                  </button>
+                </Link>
               </div>
               
               <div className="mt-8 flex justify-center items-center gap-8 text-surface-variant">

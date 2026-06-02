@@ -1,10 +1,100 @@
 'use client';
 
-import { useState } from 'react';
-import { Bot, X, Send } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Bot, X, Send, Mic, MicOff, Loader2 } from 'lucide-react';
+
+type Message = {
+  role: 'user' | 'model';
+  content: string;
+};
 
 export function AiWidget() {
   const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([
+    { role: 'model', content: "Hello! I'm Ali, your NutriAli guide. How can I help you navigate the site or receive your feedback today?" }
+  ]);
+  const [inputValue, setInputValue] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
+  const [isListening, setIsListening] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const recognitionRef = useRef<any>(null);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, isTyping]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      if (SpeechRecognition) {
+        const recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'pt-BR'; // Assuming Portuguese from prompt, or user can speak EN
+
+        recognition.onresult = (event: any) => {
+          const transcript = event.results[0][0].transcript;
+          setInputValue((prev) => prev ? `${prev} ${transcript}` : transcript);
+        };
+
+        recognition.onerror = (event: any) => {
+          console.error('Speech recognition error', event.error);
+          setIsListening(false);
+        };
+
+        recognition.onend = () => {
+          setIsListening(false);
+        };
+
+        recognitionRef.current = recognition;
+      }
+    }
+  }, []);
+
+  const toggleListen = () => {
+    if (isListening) {
+      recognitionRef.current?.stop();
+    } else {
+      try {
+        recognitionRef.current?.start();
+        setIsListening(true);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  };
+
+  const handleSend = async () => {
+    if (!inputValue.trim()) return;
+
+    const userMessage: Message = { role: 'user', content: inputValue.trim() };
+    const newMessages = [...messages, userMessage];
+    
+    setMessages(newMessages);
+    setInputValue('');
+    setIsTyping(true);
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: newMessages })
+      });
+
+      const data = await response.json();
+      
+      if (data.text) {
+        setMessages([...newMessages, { role: 'model', content: data.text }]);
+      } else {
+        setMessages([...newMessages, { role: 'model', content: 'Desculpe, ocorreu um erro.' }]);
+      }
+    } catch (error) {
+      console.error(error);
+      setMessages([...newMessages, { role: 'model', content: 'Desculpe, ocorreu um erro de conexão.' }]);
+    } finally {
+      setIsTyping(false);
+    }
+  };
 
   return (
     <div className="fixed bottom-lg right-lg z-[100] transition-all duration-300">
@@ -26,27 +116,49 @@ export function AiWidget() {
           </div>
           
           <div className="p-md h-[300px] overflow-y-auto space-y-md flex flex-col">
-            <div className="bg-surface-container-high p-sm rounded-lg self-start max-w-[85%] text-sm font-sans">
-              Hello! I'm Ali. Ready to customize your nutrition plan?
-            </div>
+            {messages.map((msg, idx) => (
+              <div 
+                key={idx}
+                className={`p-sm rounded-lg max-w-[85%] text-sm font-sans ${
+                  msg.role === 'user' 
+                    ? 'bg-primary-container text-on-primary-container self-end' 
+                    : 'bg-surface-container-high self-start text-on-surface'
+                }`}
+              >
+                {msg.content}
+              </div>
+            ))}
             
-            <div className="bg-primary-container text-on-primary-container p-sm rounded-lg self-end max-w-[85%] text-sm font-sans">
-              How does genetic testing work?
-            </div>
-            
-            <div className="bg-surface-container-high p-sm rounded-lg self-start max-w-[85%] text-sm font-sans">
-              We analyze specific markers in your DNA to determine how your body processes carbs, fats, and proteins.
-            </div>
+            {isTyping && (
+              <div className="bg-surface-container-high p-sm rounded-lg self-start text-on-surface">
+                <Loader2 className="w-4 h-4 animate-spin text-outline" />
+              </div>
+            )}
+            <div ref={messagesEndRef} />
           </div>
           
-          <div className="p-sm border-t border-outline-variant">
-            <div className="flex gap-2 items-center bg-surface-variant px-sm py-1 rounded-full">
+          <div className="p-sm border-t border-outline-variant bg-surface">
+            <div className="flex gap-1 items-center bg-surface-variant px-2 py-1 rounded-full">
+               <button 
+                onClick={toggleListen}
+                className={`p-2 rounded-full transition-colors shrink-0 ${isListening ? 'bg-error/10 text-error' : 'text-on-surface-variant hover:text-primary hover:bg-surface'}`}
+                title="Falar"
+              >
+                {isListening ? <Mic className="w-4 h-4 animate-pulse" /> : <MicOff className="w-4 h-4" />}
+              </button>
               <input 
                 type="text" 
                 placeholder="Ask Ali..." 
                 className="bg-transparent border-none focus:ring-0 focus:outline-none text-sm flex-1 w-full p-2"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSend()}
               />
-              <button className="text-primary p-2 hover:bg-surface rounded-full transition-colors">
+              <button 
+                onClick={handleSend}
+                disabled={isTyping || !inputValue.trim()}
+                className="text-primary p-2 hover:bg-surface rounded-full transition-colors disabled:opacity-50 shrink-0"
+              >
                 <Send className="w-4 h-4" />
               </button>
             </div>

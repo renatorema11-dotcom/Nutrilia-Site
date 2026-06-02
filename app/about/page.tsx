@@ -90,9 +90,9 @@ export default function AboutPage() {
 
       {/* Values Marquee */}
       <section className="py-12 bg-on-background text-on-primary overflow-hidden">
-        <div className="flex gap-8 whitespace-nowrap px-8">
-            {values.concat(values).map((v, i) => (
-                <div key={i} className="flex items-center gap-4 px-8 py-4 border border-outline/30 rounded-full">
+        <div className="flex whitespace-nowrap w-max animate-marquee">
+            {[...values, ...values, ...values, ...values, ...values, ...values].map((v, i) => (
+                <div key={i} className="flex items-center gap-4 px-8 py-4 mr-8 border border-outline/30 rounded-[2rem]">
                     <v.icon className="w-6 h-6 text-primary-fixed" />
                     <span className="text-xl font-display font-semibold">{v.label}</span>
                 </div>

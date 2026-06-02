@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Activity, Stethoscope, Utensils, Beaker, ArrowRight } from 'lucide-react';
 
 export default function ServicesPage() {
@@ -47,9 +48,11 @@ export default function ServicesPage() {
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" /> Wearable Device Integration
                 </li>
               </ul>
-              <button className="flex items-center gap-2 text-primary font-semibold text-sm group-hover:gap-3 transition-all hover:text-primary-container">
-                Explore Tracking Systems <ArrowRight className="w-4 h-4" />
-              </button>
+              <Link href="#tracking" className="inline-block">
+                <button className="flex items-center gap-2 text-primary font-semibold text-sm group-hover:gap-3 transition-all hover:text-primary-container">
+                  Explore Tracking Systems <ArrowRight className="w-4 h-4" />
+                </button>
+              </Link>
             </div>
             <div className="hidden lg:block flex-1 relative rounded-xl overflow-hidden shrink-0 h-full">
               <Image 
@@ -78,9 +81,11 @@ export default function ServicesPage() {
                 <div className="w-8 h-8 rounded-full border-2 border-on-background bg-primary-fixed flex items-center justify-center text-[10px] font-bold text-on-primary-fixed">Veg</div>
                 <div className="w-8 h-8 rounded-full border-2 border-on-background bg-secondary-fixed flex items-center justify-center text-[10px] font-bold text-on-secondary-fixed">Paleo</div>
               </div>
-              <button className="w-full py-3 bg-primary-container text-on-primary-container rounded-lg text-sm font-semibold hover:bg-surface hover:text-on-background transition-all">
-                View Sample Plans
-              </button>
+              <Link href="/contact" className="w-full">
+                <button className="w-full py-3 bg-primary-container text-on-primary-container rounded-lg text-sm font-semibold hover:bg-surface hover:text-on-background transition-all">
+                  View Sample Plans
+                </button>
+              </Link>
             </div>
           </div>
 
@@ -115,24 +120,28 @@ export default function ServicesPage() {
           <div className="md:col-span-6 bg-white border border-surface-container-highest rounded-[1.5rem] p-lg flex flex-col h-full min-h-[300px]">
             <h2 className="text-2xl font-display font-semibold mb-6">Specialized Programs</h2>
             <div className="space-y-4">
-              <div className="flex items-start gap-4 p-4 rounded-xl hover:bg-surface-container-lowest transition-colors border border-transparent hover:border-surface-container-high cursor-pointer">
-                <div className="bg-tertiary-fixed text-on-tertiary-fixed w-10 h-10 rounded-lg flex items-center justify-center shrink-0">
-                  <Beaker className="w-5 h-5" />
+              <Link href="/contact" className="block">
+                <div className="flex items-start gap-4 p-4 rounded-xl hover:bg-surface-container-lowest transition-colors border border-transparent hover:border-surface-container-high cursor-pointer">
+                  <div className="bg-tertiary-fixed text-on-tertiary-fixed w-10 h-10 rounded-lg flex items-center justify-center shrink-0">
+                    <Beaker className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-on-surface mb-1">Metabolic Reset</h3>
+                    <p className="text-sm text-on-surface-variant">A 12-week intensive designed to optimize insulin sensitivity.</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-sm font-semibold text-on-surface mb-1">Metabolic Reset</h3>
-                  <p className="text-sm text-on-surface-variant">A 12-week intensive designed to optimize insulin sensitivity.</p>
+              </Link>
+              <Link href="/contact" className="block">
+                <div className="flex items-start gap-4 p-4 rounded-xl hover:bg-surface-container-lowest transition-colors border border-transparent hover:border-surface-container-high cursor-pointer">
+                  <div className="bg-primary-fixed text-on-primary-fixed w-10 h-10 rounded-lg flex items-center justify-center shrink-0">
+                    <Activity className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-on-surface mb-1">Performance Fueling</h3>
+                    <p className="text-sm text-on-surface-variant">High-performance protocols for endurance and strength athletes.</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-4 p-4 rounded-xl hover:bg-surface-container-lowest transition-colors border border-transparent hover:border-surface-container-high cursor-pointer">
-                <div className="bg-primary-fixed text-on-primary-fixed w-10 h-10 rounded-lg flex items-center justify-center shrink-0">
-                  <Activity className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-semibold text-on-surface mb-1">Performance Fueling</h3>
-                  <p className="text-sm text-on-surface-variant">High-performance protocols for endurance and strength athletes.</p>
-                </div>
-              </div>
+              </Link>
             </div>
           </div>
         </div>

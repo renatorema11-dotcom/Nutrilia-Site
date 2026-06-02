@@ -67,3 +67,43 @@ body {
   box-shadow: 0 0 0 3px rgba(34, 102, 90, 0.2);
   border-color: #22665a;
 }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+/* Google Translate Overrides */
+iframe.skiptranslate {
+  display: none !important;
+}
+.goog-te-banner-frame.skiptranslate,
+.goog-te-banner-frame,
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
+}
+
+body {
+  top: 0px !important; 
+  position: relative !important;
+}
+
+.VIpgJd-Zvi9od-ORHb-OEVmcd,
+.VIpgJd-Zvi9od-aZ2wEe-wOHMyf,
+.VIpgJd-Zvi9od-aZ2wEe-OiiCO,
+.VIpgJd-Zvi9od-xl07Ob-OEVmcd {
+  display: none !important;
+}
+
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
