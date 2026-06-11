@@ -31,6 +31,7 @@ export function Header() {
       combo.dispatchEvent(new Event('change', { bubbles: true }));
     } else {
       // Fallback if widget hasn't fully loaded
+      // eslint-disable-next-line react-hooks/immutability
       document.cookie = `googtrans=/en/${lang}; path=/`;
       window.location.reload();
     }

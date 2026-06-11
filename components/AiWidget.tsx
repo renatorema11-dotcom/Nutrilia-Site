@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Bot, X, Send, Mic, MicOff, Loader2 } from 'lucide-react';
+import { motion } from 'motion/react';
 
 type Message = {
   role: 'user' | 'model';
@@ -16,6 +17,7 @@ export function AiWidget() {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [isListening, setIsListening] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<any>(null);
 
@@ -96,18 +98,35 @@ export function AiWidget() {
     }
   };
 
+  const handleToggle = () => {
+    if (!isDragging) {
+      setIsOpen(!isOpen);
+    }
+  };
+
   return (
-    <div className="fixed bottom-lg right-lg z-[100] transition-all duration-300">
+    <motion.div 
+      className="fixed bottom-lg right-lg z-[100] transition-shadow duration-300"
+      drag
+      dragMomentum={false}
+      onDragStart={() => setIsDragging(true)}
+      onDragEnd={() => {
+        setTimeout(() => setIsDragging(false), 150);
+      }}
+    >
       <button 
-        className="bg-on-background text-surface w-14 h-14 rounded-full flex items-center justify-center shadow-xl ai-glow hover:scale-105 active:scale-95 transition-all"
-        onClick={() => setIsOpen(!isOpen)}
+        className="bg-on-background text-surface w-14 h-14 rounded-full flex items-center justify-center shadow-xl ai-glow hover:scale-105 active:scale-95 transition-all outline-none"
+        onClick={handleToggle}
         aria-label="Toggle AI Assistant"
       >
         {isOpen ? <X className="w-6 h-6" /> : <Bot className="w-6 h-6" />}
       </button>
 
       {isOpen && (
-        <div className="absolute bottom-20 right-0 w-[320px] bg-surface rounded-xl shadow-2xl border border-outline-variant overflow-hidden flex flex-col origin-bottom-right animate-in fade-in zoom-in duration-200">
+        <div 
+          className="absolute bottom-20 right-0 w-[320px] bg-surface rounded-xl shadow-2xl border border-outline-variant overflow-hidden flex flex-col origin-bottom-right animate-in fade-in zoom-in duration-200 cursor-default"
+          onPointerDown={(e) => e.stopPropagation()} 
+        >
           <div className="bg-on-background p-md text-surface flex justify-between items-center">
             <span className="font-display font-medium text-base">Ali Intelligence</span>
             <button onClick={() => setIsOpen(false)} className="hover:text-tertiary-fixed-dim transition-colors">
@@ -165,6 +184,6 @@ export function AiWidget() {
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

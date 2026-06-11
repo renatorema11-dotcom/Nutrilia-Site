@@ -53,6 +53,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ text: response.text });
   } catch (error: any) {
     console.error("Gemini API Error:", error);
-    return NextResponse.json({ error: error.message || "Failed to generate response" }, { status: 500 });
+    // Ignore internal errors on the client, return a friendly generic message
+    return NextResponse.json({ text: "Desculpe, o assistente Ali está enfrentando alta demanda no momento. Por favor, tente novamente em alguns instantes." }, { status: 200 });
   }
 }

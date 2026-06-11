@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Apple } from 'lucide-react';
+import { Apple, Instagram } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -16,11 +16,14 @@ export function Footer() {
             © 2024 NutriAli. All rights reserved. Your health, our precision.
           </p>
         </div>
-        <div className="flex flex-wrap justify-center gap-lg">
-          <Link href="/" className="text-sm font-sans text-on-surface-variant hover:underline decoration-primary transition-all">Privacy Policy</Link>
-          <Link href="/" className="text-sm font-sans text-on-surface-variant hover:underline decoration-primary transition-all">Terms of Service</Link>
-          <Link href="/contact" className="text-sm font-sans text-on-surface-variant hover:underline decoration-primary transition-all">FAQ</Link>
-          <Link href="/" className="text-sm font-sans text-on-surface-variant hover:underline decoration-primary transition-all">Blog</Link>
+        <div className="flex flex-wrap justify-center md:justify-end gap-4 md:gap-6 items-center mt-6 md:mt-0">
+          <Link href="/privacy-policy" className="text-sm font-sans text-on-surface-variant hover:underline decoration-primary transition-all text-center">Privacy Policy</Link>
+          <Link href="/terms" className="text-sm font-sans text-on-surface-variant hover:underline decoration-primary transition-all text-center">Terms of Service</Link>
+          <Link href="/faq" className="text-sm font-sans text-on-surface-variant hover:underline decoration-primary transition-all text-center">FAQ</Link>
+          <Link href="/blog" className="text-sm font-sans text-on-surface-variant hover:underline decoration-primary transition-all text-center">Blog</Link>
+          <Link href="https://www.instagram.com/nutrialioficial/" target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary transition-all ml-2">
+            <Instagram className="w-5 h-5" />
+          </Link>
         </div>
       </div>
     </footer>

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Activity, Sparkles, Dna, Utensils, CheckCircle2 } from 'lucide-react';
+import { Activity, Sparkles, Dna, Utensils, CheckCircle2, UsersRound, FileText } from 'lucide-react';
 
 export default function HomePage() {
   return (
@@ -92,7 +92,7 @@ export default function HomePage() {
                 <Sparkles className="w-6 h-6" />
               </div>
               <h3 className="text-2xl font-display font-semibold mb-2">AI Assistant</h3>
-              <p className="opacity-90">24/7 proactive guidance from "Ali," your personalized nutrition intelligence that learns your habits.</p>
+              <p className="opacity-90">24/7 proactive guidance from &quot;Ali,&quot; your personalized nutrition intelligence that learns your habits.</p>
             </div>
 
             {/* Small Card 2 */}
@@ -105,13 +105,13 @@ export default function HomePage() {
             </div>
 
             {/* Medium Card */}
-            <div className="md:col-span-2 bg-surface-container-lowest border border-surface-container-high p-xl rounded-[1.5rem] flex flex-col md:flex-row items-center gap-lg">
+            <div className="md:col-span-2 bg-surface-container-lowest border border-surface-container-high p-xl rounded-[1.5rem] flex flex-col md:flex-row items-center gap-lg group cursor-default">
                <div className="w-full md:w-1/3 aspect-[4/3] relative rounded-xl overflow-hidden shrink-0">
                  <Image 
                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTNunM2UMyu6gmrhYe0VXYtzAw1NgrsDQHM96CZrAlZLran7zT01gjHnYDd53o6LftreL71GLdZm9bqQYmHvzIK8KjkVElIMQJMFc9K83xNGfTBB915LpvMEWL8Rjc6_57TvqUbVeNaINBdTq4fAjT-82OmpamqlwV0-o8Gz_KHTOLB_DctcgoiCjNb_F--2fFzFkVDKcnD2TVfhqsrIYzFkmZ1GYko5NtmRNc-Fny5gplIujGr_aaP82rDT50Kg46VDJKpGytU_M"
                    alt="Wearable"
                    fill
-                   className="object-cover"
+                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                    referrerPolicy="no-referrer"
                  />
                </div>
@@ -119,6 +119,44 @@ export default function HomePage() {
                  <h3 className="text-2xl font-display font-semibold text-on-background mb-2">Wearable Integration</h3>
                  <p className="text-on-surface-variant">Sync seamlessly with Oura, Apple Health, and Whoop to adjust your daily intake based on real-time strain and recovery data.</p>
                </div>
+            </div>
+
+            {/* Human Nutritionist & AI Collaboration */}
+            <div className="md:col-span-2 bg-tertiary-container border border-surface-container-high p-xl rounded-[1.5rem] flex flex-col md:flex-row items-center gap-lg group">
+               <div className="flex-1">
+                 <div className="w-12 h-12 bg-on-tertiary-container/10 text-on-tertiary-container rounded-lg flex items-center justify-center mb-md">
+                   <UsersRound className="w-6 h-6" />
+                 </div>
+                 <h3 className="text-2xl font-display font-semibold text-on-tertiary-container mb-2">Expert Human Nutritionists</h3>
+                 <p className="text-on-tertiary-container/80 text-base">
+                   The perfect blend of human empathy and AI precision. Your dedicated clinical nutritionist monitors your progress through our dashboard, reviews your exam results, and fine-tunes your nutritional protocol alongside Ali, our resident AI.
+                 </p>
+               </div>
+               <div className="w-full md:w-[45%] bg-surface border border-outline-variant rounded-xl p-6 shrink-0 shadow-sm relative group-hover:-translate-y-1 transition-transform">
+                  <div className="flex items-center gap-4 mb-4 border-b border-outline-variant pb-4">
+                    <div className="w-12 h-12 bg-tertiary/20 rounded-full flex items-center justify-center text-tertiary font-bold text-lg">DR</div>
+                    <div>
+                      <p className="font-semibold text-base text-on-background">Dr. Sarah Hughes</p>
+                      <p className="text-sm text-on-surface-variant">Clinical Nutritionist</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-on-surface-variant italic leading-relaxed">
+                    &quot;I&apos;ve reviewed your latest lipid panel and approved Ali&apos;s adjustments. Let&apos;s focus on increasing your omega-3 intake for the next two weeks.&quot;
+                  </p>
+               </div>
+            </div>
+
+            {/* Clinical Exams */}
+            <div className="bg-primary text-on-primary p-xl rounded-[1.5rem] flex flex-col items-start justify-between min-h-[300px]">
+              <div>
+                <div className="w-12 h-12 bg-on-primary/20 rounded-lg flex items-center justify-center mb-md">
+                  <FileText className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-display font-semibold mb-3">Clinical Exams</h3>
+                <p className="opacity-90 leading-relaxed text-sm">
+                  Upload your blood work and exams securely. Both our AI and your human nutritionist analyze these biomarkers to provide medical-grade guidance.
+                </p>
+              </div>
             </div>
           </div>
         </div>
