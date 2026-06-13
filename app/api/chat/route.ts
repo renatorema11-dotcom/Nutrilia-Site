@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
     }
 
     const chat = ai.chats.create({
-      model: "gemini-3.5-flash",
+      model: "gemini-2.5-flash",
       config: {
         systemInstruction: "You are Ali, the friendly support and navigation assistant for the NutriAli website. Your primary job is to help users navigate the site (Home, About Us, Services, Contact), collect their feedback, and guide them to the right place based on their needs. Do NOT provide clinical or medical nutrition advice. Keep your responses short, helpful, and focused on site navigation and customer support. Please respond in the same language the user speaks.",
       }
@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
     }));
 
     const response = await ai.models.generateContent({
-      model: "gemini-3.5-flash",
+      model: "gemini-2.5-flash",
       contents,
       config: {
         systemInstruction: "You are Ali, the friendly support and navigation assistant for the NutriAli website. Your primary job is to help users navigate the site (Home, About Us, Services, Contact), collect their feedback, and guide them to the right place based on their needs. Do NOT provide clinical or medical nutrition advice. Keep your responses short, helpful, and focused on site navigation and customer support. Please respond in the same language the user speaks.",

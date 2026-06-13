@@ -116,7 +116,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <h3 className="text-sm font-semibold text-on-surface mb-1">Headquarters</h3>
-                <p className="text-sm text-on-surface-variant font-sans">124 Precision Way, Suite 400<br/>San Francisco, CA 94103</p>
+                <p className="text-sm text-on-surface-variant font-sans">Campo Mourão, PR<br/>CEP 87.310-320</p>
               </div>
             </div>
             
@@ -136,24 +136,21 @@ export default function ContactPage() {
               </div>
               <div>
                 <h3 className="text-sm font-semibold text-on-surface mb-1">Call Us</h3>
-                <p className="text-sm text-on-surface-variant font-sans">+1 (555) 234-8890<br/>Mon-Fri, 9am - 6pm PST</p>
+                <p className="text-sm text-on-surface-variant font-sans">+55 (44) 92001-8616<br/>Mon-Fri, 9am - 6pm PST</p>
               </div>
             </div>
           </div>
           
-          <div className="flex-grow min-h-[250px] relative rounded-[1.5rem] overflow-hidden group shadow-sm border border-surface-variant">
-             <Image 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLTB-y10TcESETJkGe79VdoRnOR9K83GqjiuiN1J5YLpnnWoOc5LAdQT3R6K-QiGEcP31nikO5-cgh3AQFa0x-clAmXZMYnOTKRBNfeLwMAhLjt1m7yo-kC9VWs2GVmvCGrgWJvEBh6Wz9KB0Et-Qiio8QZ5lvBWh4F-PzGlajnAPZ0f1M1zCK-lU4UfA9Hq3sblCS6FiCBRw9HMR9FtUGyIZlLO15JUNq9WDjHftltuyYBrmGLkEbg-oQPWwjT1Jwi0wTISZP7WA"
-                alt="Map Graphic"
-                fill
-                className="object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
-                referrerPolicy="no-referrer"
-             />
-             <div className="absolute inset-0 bg-primary/10 pointer-events-none"></div>
-             <div className="absolute bottom-4 left-4 bg-surface-container-lowest/90 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-2">
-               <Compass className="w-5 h-5 text-primary" />
-               <span className="text-xs font-bold text-on-surface tracking-widest uppercase">View on Google Maps</span>
-             </div>
+          <div className="flex-grow min-h-[250px] relative rounded-[1.5rem] overflow-hidden shadow-sm border border-surface-variant">
+             <iframe
+               src="https://maps.google.com/maps?q=87310-320&t=&z=13&ie=UTF8&iwloc=&output=embed"
+               width="100%"
+               height="100%"
+               style={{ border: 0, position: 'absolute', inset: 0 }}
+               allowFullScreen
+               loading="lazy"
+               referrerPolicy="no-referrer-when-downgrade"
+             ></iframe>
           </div>
         </div>
       </section>

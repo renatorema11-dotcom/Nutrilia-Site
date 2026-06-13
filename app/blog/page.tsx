@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
-import { X } from 'lucide-react';
+import { X, Twitter, Linkedin, Mail } from 'lucide-react';
 
 export default function Blog() {
   const allPosts = [
@@ -187,6 +187,20 @@ export default function Blog() {
                       </div>
                       <span className="text-sm font-medium text-on-background">{post.author}</span>
                     </div>
+                    {isExpanded && (
+                      <div className="flex items-center space-x-2">
+                        <span className="text-xs text-on-surface-variant mr-2 font-medium hidden sm:inline-block">Share:</span>
+                        <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent('https://nutriali.com/blog')}`} target="_blank" rel="noopener noreferrer" className="p-2 bg-surface-container rounded-full hover:bg-[#1DA1F2] hover:text-white transition-colors duration-300 text-on-surface-variant flex items-center justify-center" aria-label="Share on Twitter" onClick={(e) => e.stopPropagation()}>
+                          <Twitter className="w-4 h-4" />
+                        </a>
+                        <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent('https://nutriali.com/blog')}&title=${encodeURIComponent(post.title)}`} target="_blank" rel="noopener noreferrer" className="p-2 bg-surface-container rounded-full hover:bg-[#0077b5] hover:text-white transition-colors duration-300 text-on-surface-variant flex items-center justify-center" aria-label="Share on LinkedIn" onClick={(e) => e.stopPropagation()}>
+                          <Linkedin className="w-4 h-4" />
+                        </a>
+                        <a href={`mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent("Check out this article: " + post.excerpt)}`} className="p-2 bg-surface-container rounded-full hover:bg-primary hover:text-on-primary transition-colors duration-300 text-on-surface-variant flex items-center justify-center" aria-label="Share via Email" onClick={(e) => e.stopPropagation()}>
+                          <Mail className="w-4 h-4" />
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
               </motion.article>
