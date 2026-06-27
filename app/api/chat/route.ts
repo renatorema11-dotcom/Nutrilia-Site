@@ -18,41 +18,21 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid messages format" }, { status: 400 });
     }
 
-    const chat = ai.chats.create({
-      model: "gemini-2.5-flash",
-      config: {
-        systemInstruction: "You are Ali, the friendly support and navigation assistant for the NutriAli website. Your primary job is to help users navigate the site (Home, About Us, Services, Contact), collect their feedback, and guide them to the right place based on their needs. Do NOT provide clinical or medical nutrition advice. Keep your responses short, helpful, and focused on site navigation and customer support. Please respond in the same language the user speaks.",
-      }
-    });
-    
-    // Reproduce history (simplistic approach for stateless /api route)
-    // The Gemini SDK requires `history` to be set on create if we want to continue, 
-    // but the easiest way here is to just send all previous turns as history during init.
-    // However, ai.chats.create doesn't take history in constructor the same way as older SDK,
-    // wait, I need to check the @google/genai docs for how to specify history.
-    // Actually, `config.history` might be valid, or we can just send the chat context as a string.
-    // Wait, the SDK SKILL.md just says:
-    // `const chat = ai.chats.create({ model: "gemini-3.5-flash", config: { ... } });`
-    // Wait, let's just use `ai.models.generateContent` with the assembled conversation if chat history is tricky, OR check `ai.chats.create` config for history. Let's look up how to pass history. Since I don't see history explicitly mentioned in the SKILL.md for `ai.chats.create`, let me construct it manually using `generateContent` with `contents: []`.
-    // Wait, let's just pass `contents` array to `generateContent`.
-    
-    // Format for generateContent contents: [{ role: 'user', parts: [{ text: '...' }] }]
     const contents = messages.map((msg: any) => ({
       role: msg.role === 'user' ? 'user' : 'model',
       parts: [{ text: msg.content }]
     }));
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-3.5-flash",
       contents,
       config: {
-        systemInstruction: "You are Ali, the friendly support and navigation assistant for the NutriAli website. Your primary job is to help users navigate the site (Home, About Us, Services, Contact), collect their feedback, and guide them to the right place based on their needs. Do NOT provide clinical or medical nutrition advice. Keep your responses short, helpful, and focused on site navigation and customer support. Please respond in the same language the user speaks.",
+        systemInstruction: "Você é a Ali, a IA assistente de suporte e navegação do aplicativo e site NutriAli. Sua única e principal função é ajudar os usuários a navegar na plataforma e responder a perguntas sobre a interface, localização de botões, menus, e funcionamento do site.\n\nCONHECIMENTO DO SITE:\n- O menu principal fica na parte superior com links para Home, About Us, Services, Blog e Contact.\n- Se o usuário perguntar 'Aonde é para mim começar a usar o aplicativo?', você responde: 'Aperte o botão de início (Get Started) na parte superior à direita do menu.'\n- Se perguntarem 'Aonde que é o blog?' ou qualquer outra página do rodapé, responda: 'Você arrasta para baixo todo (rola a página até o fim), você vai ver que tem lá no canto inferior direito, a tecla escrito blog, você clica e você chegará lá.' (Ou adapte para a página correta).\n- Os botões das redes sociais e links ficam em pequenos ícones circulares no rodapé e na página de contatos.\n\nREGRAS CRÍTICAS:\n- NÃO DÊ CONSELHOS NUTRICIONAIS, de dieta ou médicos em NENHUMA hipótese. Se perguntarem algo de nutrição ou pedirem conselhos, diga que você é a IA de suporte da plataforma e não fornece diagnóstico ou conselho clínico, mas pode guiá-los até a página de Contato para falarem com a equipe de especialistas.\n- Responda apenas em português do Brasil.\n- Seja educada, direta e rápida nas informações.",
       }
     });
 
     return NextResponse.json({ text: response.text });
   } catch (error: any) {
-    console.error("Gemini API Error:", error);
     // Ignore internal errors on the client, return a friendly generic message
     return NextResponse.json({ text: "Desculpe, o assistente Ali está enfrentando alta demanda no momento. Por favor, tente novamente em alguns instantes." }, { status: 200 });
   }

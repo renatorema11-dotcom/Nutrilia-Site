@@ -174,7 +174,7 @@ export default function HomePage() {
                 Ready to meet the <span className="text-primary-fixed-dim">best version</span> of you?
               </h2>
               <p className="text-surface-variant max-w-[36rem] mx-auto mb-10 text-base">
-                Join 50,000+ members who have traded guesswork for precision. Start your 14-day clinical trial today.
+                Join 50,000+ members who have traded guesswork for precision.
               </p>
               
               <div className="flex flex-col md:flex-row justify-center items-center gap-4">
@@ -188,17 +188,6 @@ export default function HomePage() {
                     Talk to an Expert
                   </button>
                 </Link>
-              </div>
-              
-              <div className="mt-8 flex justify-center items-center gap-8 text-surface-variant">
-                 <div className="flex items-center gap-2">
-                   <CheckCircle2 className="w-4 h-4 text-tertiary-fixed-dim" />
-                   <span className="text-sm">No credit card required</span>
-                 </div>
-                 <div className="flex items-center gap-2">
-                   <CheckCircle2 className="w-4 h-4 text-tertiary-fixed-dim" />
-                   <span className="text-sm">Cancel anytime</span>
-                 </div>
               </div>
             </div>
           </div>

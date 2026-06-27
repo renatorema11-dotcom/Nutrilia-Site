@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang="pt-BR" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body suppressHydrationWarning className="min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
         <Header />
         <main className="flex-grow">

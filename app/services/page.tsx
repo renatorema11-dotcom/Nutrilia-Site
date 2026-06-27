@@ -1,8 +1,13 @@
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Activity, Stethoscope, Utensils, Beaker, ArrowRight } from 'lucide-react';
+import { Activity, Stethoscope, Utensils, Beaker, ArrowRight, X } from 'lucide-react';
 
 export default function ServicesPage() {
+  const [showPlansModal, setShowPlansModal] = useState(false);
+  
   return (
     <div className="w-full">
       {/* Hero Section */}
@@ -81,11 +86,12 @@ export default function ServicesPage() {
                 <div className="w-8 h-8 rounded-full border-2 border-on-background bg-primary-fixed flex items-center justify-center text-[10px] font-bold text-on-primary-fixed">Veg</div>
                 <div className="w-8 h-8 rounded-full border-2 border-on-background bg-secondary-fixed flex items-center justify-center text-[10px] font-bold text-on-secondary-fixed">Paleo</div>
               </div>
-              <Link href="/contact" className="w-full">
-                <button className="w-full py-3 bg-primary-container text-on-primary-container rounded-lg text-sm font-semibold hover:bg-surface hover:text-on-background transition-all">
-                  View Sample Plans
-                </button>
-              </Link>
+              <button 
+                onClick={() => setShowPlansModal(true)}
+                className="w-full py-3 bg-primary-container text-on-primary-container rounded-lg text-sm font-semibold hover:bg-surface hover:text-on-background transition-all"
+              >
+                Veja exemplos de planos
+              </button>
             </div>
           </div>
 
@@ -146,6 +152,57 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      {/* Plans Modal */}
+      {showPlansModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm">
+          <div className="bg-surface border border-outline w-full max-w-2xl rounded-[2rem] p-6 md:p-8 relative shadow-2xl animate-in slide-in-from-bottom-4 fade-in duration-300">
+            <button 
+              onClick={() => setShowPlansModal(false)}
+              className="absolute top-4 right-4 p-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-full transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            <h2 className="text-3xl font-display font-bold mb-6 text-on-background">Exemplos de Planos</h2>
+            <div className="space-y-6 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+              <div className="p-5 bg-tertiary-container/10 rounded-2xl border border-outline-variant">
+                <h3 className="font-bold text-lg text-on-surface flex items-center gap-2 mb-2"><Utensils className="w-5 h-5 text-tertiary"/> Ketogenic Performance</h3>
+                <p className="text-on-surface-variant text-sm mb-4">Abordagem rica em gorduras boas e pobre em carboidratos (high-fat, low-carb) estruturada para clareza mental e adaptação da queima de gordura.</p>
+                <div className="text-xs text-on-surface-variant flex flex-wrap gap-2">
+                  <span className="bg-surface-container px-3 py-1.5 rounded-full font-medium">70% Gordura</span>
+                  <span className="bg-surface-container px-3 py-1.5 rounded-full font-medium">25% Proteína</span>
+                  <span className="bg-surface-container px-3 py-1.5 rounded-full font-medium">5% Carbs</span>
+                </div>
+              </div>
+              <div className="p-5 bg-primary-container/10 rounded-2xl border border-outline-variant">
+                <h3 className="font-bold text-lg text-on-surface flex items-center gap-2 mb-2"><Beaker className="w-5 h-5 text-primary"/> Plant-Based Vitality</h3>
+                <p className="text-on-surface-variant text-sm mb-4">Rico em polifenóis, fibras e totalmente baseado em plantas. Otimizado para energia constante, longevidade e saúde cardíaca.</p>
+                <div className="text-xs text-on-surface-variant flex flex-wrap gap-2">
+                  <span className="bg-surface-container px-3 py-1.5 rounded-full font-medium">20% Gordura</span>
+                  <span className="bg-surface-container px-3 py-1.5 rounded-full font-medium">25% Proteína</span>
+                  <span className="bg-surface-container px-3 py-1.5 rounded-full font-medium">55% Carbs</span>
+                </div>
+              </div>
+              <div className="p-5 bg-secondary-container/10 rounded-2xl border border-outline-variant">
+                <h3 className="font-bold text-lg text-on-surface flex items-center gap-2 mb-2"><Activity className="w-5 h-5 text-secondary"/> Paleo Foundation</h3>
+                <p className="text-on-surface-variant text-sm mb-4">Abordagem balanceada priorizando alimentos integrais, carnes orgânicas e vegetais, excluindo grãos e processados do dia-a-dia.</p>
+                <div className="text-xs text-on-surface-variant flex flex-wrap gap-2">
+                  <span className="bg-surface-container px-3 py-1.5 rounded-full font-medium">40% Gordura</span>
+                  <span className="bg-surface-container px-3 py-1.5 rounded-full font-medium">30% Proteína</span>
+                  <span className="bg-surface-container px-3 py-1.5 rounded-full font-medium">30% Carbs</span>
+                </div>
+              </div>
+            </div>
+            <div className="mt-8 pt-4 border-t border-outline-variant border-dashed">
+              <Link href="/contact" onClick={() => setShowPlansModal(false)}>
+                <button className="w-full bg-primary text-on-primary py-3.5 rounded-full font-semibold hover:bg-primary/90 transition-colors shadow-sm active:scale-[0.98]">
+                  Agendar Consulta Nutricional
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

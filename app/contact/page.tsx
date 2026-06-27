@@ -26,14 +26,37 @@ export default function ContactPage() {
     }
   });
 
-  const onSubmit = (data: ContactFormData) => {
+  const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
+    
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/renatorema11@gmail.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            name: data.fullName,
+            email: data.email,
+            subject: data.subject,
+            message: data.message,
+            _subject: `New Contact Form Submission: ${data.subject}`,
+            _template: "table"
+        })
+      });
+
+      if (response.ok) {
+        setIsSuccess(true);
+        reset();
+      } else {
+        console.error("Form submission failed");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
       setIsSubmitting(false);
-      setIsSuccess(true);
-      reset();
-    }, 1500);
+    }
   };
 
   return (
@@ -126,7 +149,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <h3 className="text-sm font-semibold text-on-surface mb-1">Email Us</h3>
-                <p className="text-sm text-on-surface-variant font-sans">hello@nutriali.com<br/>support@nutriali.com</p>
+                <p className="text-sm text-on-surface-variant font-sans">renatorema11@gmail.com</p>
               </div>
             </div>
             
@@ -164,10 +187,15 @@ export default function ContactPage() {
               <p className="text-base text-on-surface-variant mt-1">Stay updated with the latest precision nutrition breakthroughs.</p>
             </div>
             <div className="flex gap-4">
-              {[Share2, Globe, Users, MonitorPlay].map((Icon, idx) => (
-                <button key={idx} className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-all duration-300">
+              {[
+                { Icon: Share2, href: "https://twitter.com/nutriali", label: "Share on Twitter" },
+                { Icon: Globe, href: "https://nutriali.com", label: "Website" },
+                { Icon: Users, href: "https://linkedin.com/company/nutriali", label: "LinkedIn" },
+                { Icon: MonitorPlay, href: "https://youtube.com/@nutriali", label: "YouTube" }
+              ].map(({ Icon, href, label }, idx) => (
+                <a key={idx} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-all duration-300">
                   <Icon className="w-5 h-5" />
-                </button>
+                </a>
               ))}
             </div>
           </div>

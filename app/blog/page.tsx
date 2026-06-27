@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Twitter, Linkedin, Mail } from 'lucide-react';
 
@@ -15,6 +16,7 @@ export default function Blog() {
       readTime: "5 min read",
       category: "Science",
       author: "Dr. Elena Rostova",
+      image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=800"
     },
     {
       title: "Understanding Macronutrients for Energy",
@@ -24,6 +26,7 @@ export default function Blog() {
       readTime: "4 min read",
       category: "Nutrition Basics",
       author: "Marcus Chen",
+      image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=800"
     },
     {
       title: "How Sleep Affects Your Diet Choices",
@@ -33,6 +36,7 @@ export default function Blog() {
       readTime: "7 min read",
       category: "Wellness",
       author: "Dr. Sarah Lin",
+      image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&q=80&w=800"
     },
     {
       title: "Hydration: Beyond 8 Glasses a Day",
@@ -42,6 +46,7 @@ export default function Blog() {
       readTime: "3 min read",
       category: "Nutrition Basics",
       author: "Marcus Chen",
+      image: "https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&q=80&w=800"
     },
     {
       title: "The Gut-Brain Connection",
@@ -51,6 +56,7 @@ export default function Blog() {
       readTime: "8 min read",
       category: "Science",
       author: "Dr. Elena Rostova",
+      image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&q=80&w=800"
     },
     {
       title: "Creating Sustainable Habits",
@@ -60,6 +66,7 @@ export default function Blog() {
       readTime: "6 min read",
       category: "Wellness",
       author: "Dr. Sarah Lin",
+      image: "https://images.unsplash.com/photo-1483706600674-e0c87d3fe85b?auto=format&fit=crop&q=80&w=800"
     },
     {
       title: "The Role of Intermittent Fasting",
@@ -69,6 +76,7 @@ export default function Blog() {
       readTime: "5 min read",
       category: "Diet & Fasting",
       author: "Marcus Chen",
+      image: "https://images.unsplash.com/photo-1495364141860-b0d03eccd065?auto=format&fit=crop&q=80&w=800"
     },
     {
       title: "Plant-Based vs. Omnivore Protocols",
@@ -78,6 +86,7 @@ export default function Blog() {
       readTime: "9 min read",
       category: "Nutrition Basics",
       author: "Dr. Elena Rostova",
+      image: "https://picsum.photos/seed/plant/800/600"
     },
     {
       title: "Supplements: What Actually Works?",
@@ -87,11 +96,13 @@ export default function Blog() {
       readTime: "7 min read",
       category: "Science",
       author: "Dr. Sarah Lin",
+      image: "https://picsum.photos/seed/supplements/800/600"
     }
   ];
 
   const [visibleCount, setVisibleCount] = useState(3);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [isSubscribed, setIsSubscribed] = useState(false);
 
   const loadMore = () => {
     setVisibleCount(prev => Math.min(prev + 3, allPosts.length));
@@ -126,8 +137,17 @@ export default function Blog() {
               >
                 {!isExpanded && (
                   <div className="h-48 bg-surface-container-highest relative overflow-hidden flex-shrink-0">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-tertiary/20 mix-blend-multiply group-hover:scale-105 transition-transform duration-500" />
-                    <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-on-background">
+                    <Image 
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      priority={index <= 2}
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-tertiary/20 mix-blend-multiply group-hover:opacity-80 transition-opacity duration-500" />
+                    <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-on-background z-10">
                       {post.category}
                     </div>
                   </div>
@@ -169,6 +189,17 @@ export default function Blog() {
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
                       >
+                        <div className="relative h-64 md:h-80 w-full mb-8 rounded-2xl overflow-hidden shadow-md">
+                          <Image
+                            src={post.image}
+                            alt={post.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            priority={index <= 2}
+                            className="object-cover"
+                            referrerPolicy="no-referrer"
+                          />
+                        </div>
                         <p className="text-on-surface-variant leading-relaxed text-lg mb-8">
                           {post.excerpt}
                         </p>
@@ -209,7 +240,7 @@ export default function Blog() {
         </div>
         
         {visibleCount < allPosts.length && (
-          <div className="mt-20 flex justify-center pb-20">
+          <div className="mt-20 flex justify-center pb-12">
             <button 
               onClick={loadMore}
               className="px-8 py-3 rounded-full border-2 border-surface-container-highest text-on-background font-semibold hover:bg-surface-container-highest active:scale-95 transition-all"
@@ -218,6 +249,46 @@ export default function Blog() {
             </button>
           </div>
         )}
+
+        <div className="mt-12 mb-20 bg-primary/5 rounded-3xl p-8 md:p-12 text-center border border-primary/10">
+          <Mail className="w-12 h-12 text-primary mx-auto mb-6" />
+          <h3 className="text-2xl md:text-3xl font-display font-bold text-on-background mb-4">Assine nossa newsletter</h3>
+          <p className="text-on-surface-variant mb-8 text-base md:text-lg leading-relaxed">
+            Receba semanalmente em sua caixa de entrada as informações mais recentes sobre nutrição de precisão, longevidade e bem-estar clínico.
+          </p>
+          {isSubscribed ? (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="bg-primary/10 text-primary py-4 px-6 rounded-full max-w-md mx-auto font-medium"
+            >
+              Inscrição realizada com sucesso! 🎉
+            </motion.div>
+          ) : (
+            <form 
+              onSubmit={(e) => {
+                e.preventDefault();
+                setIsSubscribed(true);
+                setTimeout(() => setIsSubscribed(false), 5000);
+                (e.target as HTMLFormElement).reset();
+              }}
+              className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+            >
+              <input 
+                type="email" 
+                placeholder="Digite seu e-mail" 
+                required
+                className="flex-1 bg-surface border border-outline px-6 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-on-surface"
+              />
+              <button 
+                type="submit"
+                className="bg-primary text-on-primary font-semibold px-8 py-3 rounded-full hover:bg-primary/90 transition-colors whitespace-nowrap active:scale-95 transition-transform"
+              >
+                Inscrever-se
+              </button>
+            </form>
+          )}
+        </div>
       </div>
     </div>
   );

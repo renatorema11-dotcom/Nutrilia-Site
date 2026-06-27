@@ -65,6 +65,9 @@ export function Header() {
           <Link href="/services" className="text-on-surface-variant hover:text-primary transition-colors">
             Services
           </Link>
+          <Link href="/performance" className="text-on-surface-variant hover:text-primary transition-colors">
+            Insights
+          </Link>
           <Link href="/about" className="text-on-surface-variant hover:text-primary transition-colors">
             About Us
           </Link>
