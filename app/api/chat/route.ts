@@ -33,6 +33,12 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ text: response.text });
   } catch (error: any) {
+    console.error("Erro na API do Gemini:", error);
+    
+    if (!process.env.GEMINI_API_KEY) {
+       return NextResponse.json({ text: "A API Key do Gemini não está configurada. Por favor, adicione-a no menu Secrets (Settings) do AI Studio." }, { status: 200 });
+    }
+    
     // Ignore internal errors on the client, return a friendly generic message
     return NextResponse.json({ text: "Desculpe, o assistente Ali está enfrentando alta demanda no momento. Por favor, tente novamente em alguns instantes." }, { status: 200 });
   }
