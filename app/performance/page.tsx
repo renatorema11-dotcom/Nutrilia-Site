@@ -230,7 +230,7 @@ export default function Performance() {
             })}
           </div>
 
-          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-surface-container-high relative overflow-hidden">
+          <div className="bg-white rounded-3xl p-4 sm:p-8 md:p-12 shadow-sm border border-surface-container-high relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
             
             <div className="max-w-4xl mx-auto relative z-10">
@@ -265,7 +265,7 @@ export default function Performance() {
                     <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-primary text-white shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
                       <CheckCircle2 className="w-5 h-5" />
                     </div>
-                    <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant transition-all hover:border-primary/40 hover:bg-surface-container-low hover:shadow-md">
+                    <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-surface-container-lowest p-4 sm:p-6 rounded-2xl border border-outline-variant transition-all hover:border-primary/40 hover:bg-surface-container-low hover:shadow-md">
                       <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary mb-3 bg-primary/10 px-3 py-1 rounded-full">
                         {milestone.month}
                       </span>

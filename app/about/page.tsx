@@ -25,8 +25,8 @@ export default function AboutPage() {
         </p>
         
         {/* Asymmetric Image Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 mt-16 h-[400px] md:h-[600px]">
-          <div className="md:col-span-8 relative rounded-[2rem] overflow-hidden group">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 mt-16 h-auto md:h-[600px]">
+          <div className="md:col-span-8 h-[300px] md:h-auto relative rounded-[2rem] overflow-hidden group">
             <Image 
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuASTYEGOvIz7jWdENGcHyGnKmNxo_Nd6nKqcuP6tBDt1tBSbYILGRPWRZI1NmBNGf2Y_BBGGndyyEeg-meRkSa6mJ6u9W8uqSYOBjv-diy4ahtOG5HzBKhaZ-naErFCsXZ7rj7M2VOe-mg4Q2vsfJ3jO7mgXkww7GefPRYCQHKPfCsfgIHOLzOPmXd7G85f5Q8OsJHroSTevrgqyzGfCsRxXwvVzNiugWBfIpvn7m-6C9YZaHDAoPNQlW0cUwfMvH9imCTlzLVSpdU"
               alt="Wellness Clinic"
@@ -41,7 +41,7 @@ export default function AboutPage() {
             </div>
           </div>
           
-          <div className="md:col-span-4 grid grid-rows-2 gap-5">
+          <div className="md:col-span-4 grid grid-rows-2 gap-5 h-[400px] md:h-auto">
             <div className="bg-primary-container rounded-[2rem] p-8 flex flex-col justify-center items-start text-on-primary-container relative overflow-hidden group">
               <FlaskConical className="w-8 h-8 mb-4 relative z-10" />
               <div className="text-4xl font-display font-bold mb-2 relative z-10">10k+</div>

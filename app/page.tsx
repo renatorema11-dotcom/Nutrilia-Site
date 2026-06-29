@@ -67,7 +67,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-md">
             {/* Large Card */}
-            <div className="md:col-span-2 bg-surface-container-lowest border border-surface-container-high p-xl rounded-[1.5rem] flex flex-col justify-end relative overflow-hidden group min-h-[300px]">
+            <div className="md:col-span-2 bg-surface-container-lowest border border-surface-container-high p-6 md:p-xl rounded-[1.5rem] flex flex-col justify-end relative overflow-hidden group min-h-[300px]">
               <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity">
                  <Image 
                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDfVqc3JyqICRtdqCIqCwCRB53d52G7La7tY4r-w4BEn6yVm6MtF2s43jxl74Sm8MC_kHP86tW32X7-MsjutMZTQVFAbDCpLOB2PYSMTHorS59ZbQruQzvVETCg0bCbHAAB3PFr4RJmDfSZvIFsgNMbmvpbWdyyWqulj8WcrUKLZVmRkpXtoaT-fmQ5ZNpXdqfJcc2QHNshosor7ldriUyKRPD2-poYYNUwxl33xil2J80tAMQ7bJagwjUypndpifwqQPUesGC0J8"
@@ -87,7 +87,7 @@ export default function HomePage() {
             </div>
 
             {/* Small Card 1 */}
-            <div className="bg-secondary-container text-on-secondary-container p-xl rounded-[1.5rem] flex flex-col items-start min-h-[300px]">
+            <div className="bg-secondary-container text-on-secondary-container p-6 md:p-xl rounded-[1.5rem] flex flex-col items-start min-h-[300px]">
               <div className="w-12 h-12 bg-on-secondary-container/20 rounded-lg flex items-center justify-center mb-md">
                 <Sparkles className="w-6 h-6" />
               </div>
@@ -96,7 +96,7 @@ export default function HomePage() {
             </div>
 
             {/* Small Card 2 */}
-            <div className="bg-surface-container-lowest border-2 border-primary/10 p-xl rounded-[1.5rem] flex flex-col items-start min-h-[300px]">
+            <div className="bg-surface-container-lowest border-2 border-primary/10 p-6 md:p-xl rounded-[1.5rem] flex flex-col items-start min-h-[300px]">
               <div className="w-12 h-12 bg-primary-container rounded-lg flex items-center justify-center mb-md text-on-primary-container">
                 <Utensils className="w-6 h-6" />
               </div>
@@ -105,7 +105,7 @@ export default function HomePage() {
             </div>
 
             {/* Medium Card */}
-            <div className="md:col-span-2 bg-surface-container-lowest border border-surface-container-high p-xl rounded-[1.5rem] flex flex-col md:flex-row items-center gap-lg group cursor-default">
+            <div className="md:col-span-2 bg-surface-container-lowest border border-surface-container-high p-6 md:p-xl rounded-[1.5rem] flex flex-col md:flex-row items-center gap-lg group cursor-default">
                <div className="w-full md:w-1/3 aspect-[4/3] relative rounded-xl overflow-hidden shrink-0">
                  <Image 
                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTNunM2UMyu6gmrhYe0VXYtzAw1NgrsDQHM96CZrAlZLran7zT01gjHnYDd53o6LftreL71GLdZm9bqQYmHvzIK8KjkVElIMQJMFc9K83xNGfTBB915LpvMEWL8Rjc6_57TvqUbVeNaINBdTq4fAjT-82OmpamqlwV0-o8Gz_KHTOLB_DctcgoiCjNb_F--2fFzFkVDKcnD2TVfhqsrIYzFkmZ1GYko5NtmRNc-Fny5gplIujGr_aaP82rDT50Kg46VDJKpGytU_M"
@@ -122,7 +122,7 @@ export default function HomePage() {
             </div>
 
             {/* Human Nutritionist & AI Collaboration */}
-            <div className="md:col-span-2 bg-tertiary-container border border-surface-container-high p-xl rounded-[1.5rem] flex flex-col md:flex-row items-center gap-lg group">
+            <div className="md:col-span-2 bg-tertiary-container border border-surface-container-high p-6 md:p-xl rounded-[1.5rem] flex flex-col md:flex-row items-center gap-lg group">
                <div className="flex-1">
                  <div className="w-12 h-12 bg-on-tertiary-container/10 text-on-tertiary-container rounded-lg flex items-center justify-center mb-md">
                    <UsersRound className="w-6 h-6" />
@@ -147,7 +147,7 @@ export default function HomePage() {
             </div>
 
             {/* Clinical Exams */}
-            <div className="bg-primary text-on-primary p-xl rounded-[1.5rem] flex flex-col items-start justify-between min-h-[300px]">
+            <div className="bg-primary text-on-primary p-6 md:p-xl rounded-[1.5rem] flex flex-col items-start justify-between min-h-[300px]">
               <div>
                 <div className="w-12 h-12 bg-on-primary/20 rounded-lg flex items-center justify-center mb-md">
                   <FileText className="w-6 h-6" />

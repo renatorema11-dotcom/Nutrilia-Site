@@ -124,7 +124,7 @@ export function AiWidget() {
 
       {isOpen && (
         <div 
-          className="absolute bottom-20 right-0 w-[320px] bg-surface rounded-xl shadow-2xl border border-outline-variant overflow-hidden flex flex-col origin-bottom-right animate-in fade-in zoom-in duration-200 cursor-default"
+          className="absolute bottom-20 right-0 w-[calc(100vw-2rem)] sm:w-[320px] max-w-[320px] bg-surface rounded-xl shadow-2xl border border-outline-variant overflow-hidden flex flex-col origin-bottom-right animate-in fade-in zoom-in duration-200 cursor-default"
           onPointerDown={(e) => e.stopPropagation()} 
         >
           <div className="bg-on-background p-md text-surface flex justify-between items-center">

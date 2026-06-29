@@ -33,7 +33,7 @@ export default function ServicesPage() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
           
           {/* Tracking */}
-          <div className="md:col-span-8 bg-surface-container-lowest border border-surface-container-highest rounded-[1.5rem] p-lg flex flex-col lg:flex-row gap-lg group h-[450px]">
+          <div className="md:col-span-8 bg-surface-container-lowest border border-surface-container-highest rounded-[1.5rem] p-6 md:p-lg flex flex-col lg:flex-row gap-lg group min-h-[450px]">
             <div className="flex-1 flex flex-col justify-center">
               <div className="w-12 h-12 bg-primary-container text-on-primary-container rounded-xl flex items-center justify-center mb-6">
                 <Activity className="w-6 h-6" />
@@ -71,7 +71,7 @@ export default function ServicesPage() {
           </div>
 
           {/* Meals */}
-          <div className="md:col-span-4 bg-on-background text-surface border border-on-background rounded-[1.5rem] p-lg flex flex-col relative overflow-hidden group min-h-[450px]">
+          <div className="md:col-span-4 bg-on-background text-surface border border-on-background rounded-[1.5rem] p-6 md:p-lg flex flex-col relative overflow-hidden group min-h-[450px]">
             <div className="w-12 h-12 bg-primary text-on-primary rounded-xl flex items-center justify-center mb-6 relative z-10">
               <Utensils className="w-6 h-6" />
             </div>
@@ -96,7 +96,7 @@ export default function ServicesPage() {
           </div>
 
           {/* Consultation */}
-          <div className="md:col-span-6 bg-surface-container-low border border-surface-container-high rounded-[1.5rem] p-lg flex flex-col group min-h-[300px]">
+          <div className="md:col-span-6 bg-surface-container-low border border-surface-container-high rounded-[1.5rem] p-6 md:p-lg flex flex-col group min-h-[300px]">
             <div className="flex items-center justify-between mb-8">
               <div className="w-12 h-12 bg-secondary-container text-on-secondary-container rounded-xl flex items-center justify-center">
                 <Stethoscope className="w-6 h-6" />
@@ -123,7 +123,7 @@ export default function ServicesPage() {
           </div>
 
           {/* Programs */}
-          <div className="md:col-span-6 bg-white border border-surface-container-highest rounded-[1.5rem] p-lg flex flex-col h-full min-h-[300px]">
+          <div className="md:col-span-6 bg-white border border-surface-container-highest rounded-[1.5rem] p-6 md:p-lg flex flex-col h-full min-h-[300px]">
             <h2 className="text-2xl font-display font-semibold mb-6">Specialized Programs</h2>
             <div className="space-y-4">
               <Link href="/contact" className="block">
