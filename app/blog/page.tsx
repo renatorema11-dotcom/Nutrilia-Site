@@ -249,46 +249,6 @@ export default function Blog() {
             </button>
           </div>
         )}
-
-        <div className="mt-12 mb-20 bg-primary/5 rounded-3xl p-8 md:p-12 text-center border border-primary/10">
-          <Mail className="w-12 h-12 text-primary mx-auto mb-6" />
-          <h3 className="text-2xl md:text-3xl font-display font-bold text-on-background mb-4">Assine nossa newsletter</h3>
-          <p className="text-on-surface-variant mb-8 text-base md:text-lg leading-relaxed">
-            Receba semanalmente em sua caixa de entrada as informações mais recentes sobre nutrição de precisão, longevidade e bem-estar clínico.
-          </p>
-          {isSubscribed ? (
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="bg-primary/10 text-primary py-4 px-6 rounded-full max-w-md mx-auto font-medium"
-            >
-              Inscrição realizada com sucesso! 🎉
-            </motion.div>
-          ) : (
-            <form 
-              onSubmit={(e) => {
-                e.preventDefault();
-                setIsSubscribed(true);
-                setTimeout(() => setIsSubscribed(false), 5000);
-                (e.target as HTMLFormElement).reset();
-              }}
-              className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-            >
-              <input 
-                type="email" 
-                placeholder="Digite seu e-mail" 
-                required
-                className="flex-1 bg-surface border border-outline px-6 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-on-surface"
-              />
-              <button 
-                type="submit"
-                className="bg-primary text-on-primary font-semibold px-8 py-3 rounded-full hover:bg-primary/90 transition-colors whitespace-nowrap active:scale-95 transition-transform"
-              >
-                Inscrever-se
-              </button>
-            </form>
-          )}
-        </div>
       </div>
     </div>
   );
